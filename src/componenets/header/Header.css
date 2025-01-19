@@ -1,0 +1,214 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f1b30;
+  color: #fff;
+  padding: 0.9375rem 1.875rem;
+  box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: transform 0.3s;
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transition: transform 0.3s;
+  -moz-transition: transform 0.3s;
+  -ms-transition: transform 0.3s;
+  -o-transition: transform 0.3s;
+}
+
+.logo img {
+  height: 3rem;
+}
+
+.logo:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.cart-menu{
+  display: flex;
+  gap: 2rem;
+}
+.menu {
+  display: flex;
+  gap: 1.5625rem;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.3125rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  -webkit-transition: background-color 0.3s, box-shadow 0.3s;
+  -moz-transition: background-color 0.3s, box-shadow 0.3s;
+  -ms-transition: background-color 0.3s, box-shadow 0.3s;
+  -o-transition: background-color 0.3s, box-shadow 0.3s;
+  -webkit-border-radius: 0.3125rem;
+  -moz-border-radius: 0.3125rem;
+  -ms-border-radius: 0.3125rem;
+  -o-border-radius: 0.3125rem;
+}
+
+.menu-item:hover {
+  background-color: #00002c;
+  color: #fff;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+}
+.cart-container:hover{
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+.cart-icon {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cart-count {
+  position: relative;
+  top: -0.5rem;
+  background-color: #ff4d4d;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+
+.menubar{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menuBar1, .menuBar2, .menuBar3{
+  width: 2rem;
+  height: 0.2rem;
+  border-radius: 4rem;
+  background: #fff;
+  margin-top: 0.5rem;
+  -webkit-border-radius: 4rem;
+  -moz-border-radius: 4rem;
+  -ms-border-radius: 4rem;
+  -o-border-radius: 4rem;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+}
+
+.menuDisplayAnimation1{
+    transform-origin: 0 center 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    margin-bottom: 0.5rem;
+}
+.menuHideAnimation1{
+  transform: rotate(0);
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+}
+.menuDisplayAnimation3{
+    transform-origin: 0 center 0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    margin-top: 0.5rem;
+}
+.menuHideAnimation3{
+  transform: rotate(0);
+}
+.menuDisplayAnimation2{
+  margin: 0;
+  width: 0;
+  transform-origin: 0 center 0;
+}
+.menuHideAnimation2{
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5rem;
+    background: #00000f;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+    top: 5rem;
+    width: 20rem;
+    height: 90vh;
+    padding: 0 1rem;
+    overflow: scroll;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+}
+  .showMenu{
+    left: 0rem;
+  }
+  .hideMenu{
+    left: -22rem;
+  }
+  .menu-item{
+    width: 100%;
+    gap: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  .menubar{
+    display: block;
+  }
+}

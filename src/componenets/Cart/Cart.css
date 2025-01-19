@@ -1,0 +1,205 @@
+.main {
+    /* padding: 1.25rem; */
+    background-color: #fff;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 0.9375rem;
+    box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+    margin: 1.25rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+}
+
+table th, table td {
+    padding: 1.125rem 1.5rem;
+    text-align: left;
+    border-bottom: 0.0625rem solid #e4e4e4;
+}
+
+table th {
+    background-color: #f9f9f9;
+    color: #4c4c4c;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.03125rem;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.itemImg {
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 0.5rem;
+    margin-right: 0.9375rem;
+    object-fit: cover;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.QuantityNo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right: 0.9375rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.quantityActions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.quantityActions button {
+    background-color: #6c8dbf;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    /* padding: 0.625rem 1.125rem; */
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    margin: 0 0.625rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.quantityActions button:hover {
+    background-color: #54739e;
+    transform: scale(1.05);
+}
+
+.quantityActions button:disabled {
+    background-color: #d0d0d0;
+    color: black;
+    cursor: not-allowed;
+    transform: none;
+    cursor: not-allowed;
+}
+
+.remove-btn {
+    background-color: #d9534f;
+    color: white;
+    padding: 0.5rem 0.9375rem;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    background-color: #f9f9f9;
+    padding: 1.5625rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+}
+
+.total-written {
+    font-size: 1.125rem;
+}
+
+.total-written p {
+    margin: 0.3125rem 0;
+    font-size: 1rem;
+}
+
+.total-written span {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.button {
+    background-color: #28a745;
+    color: white;
+    padding: 0.875rem 1.5rem;
+    font-size: 1.125rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.button:disabled {
+    background-color: #d0d0d0;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 1024px) {
+    table th, table td {
+        /* padding: 0.75rem 0.9375rem; */
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .total {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.25rem;
+    }
+
+    .button {
+        width: 100%;
+        /* padding: 0.5rem; */
+        font-size: 1rem;
+        box-shadow: none;
+    }
+
+    .quantityActions {
+        display: flex;
+        flex-direction: column;
+    }
+    .QuantityNo{
+        font-size: 0.9rem;
+    }
+    .quantityActions button {
+        margin-bottom: 0.625rem;
+    }
+}
+@media screen and (max-width: 770px) {
+    table th, table td {
+        padding: 0.75rem 0.9375rem;
+        font-size: 0.7rem;
+    }
+    .quantityActions .btn {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: .75rem;
+        box-shadow: none;
+    }
+    .btn{
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+    .QuantityNo{
+        font-size: 0.6rem;
+    }
+}
