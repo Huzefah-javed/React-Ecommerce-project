@@ -48,14 +48,101 @@ body{
   }
 
 
+.loading-cart{
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 0.9375rem;
+  min-width: 15rem;
+  /* box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); */
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  min-height: 30rem;
+  width: 100%;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.loader-img{
+  height: 15rem;
+  width: 100%;
+  background-color: rgb(211, 211, 211);
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+.loader-title{
+  width: 10rem;
+  height: 2rem;
+  background-color: rgb(211, 211, 211);
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+.loader-rating{
+  color:rgb(211, 211, 211);
+}
+.loader-price{
+  width: 4rem;
+  height: 2rem;
+  background-color: rgb(211, 211, 211);
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+.loader-btns{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  gap: 0.625rem;
+}
+.loader-btns button{
+  width: 6rem;
+  background-color: rgb(211, 211, 211);
+  padding: 1rem 1.75rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-border-radius: 0.3125rem;
+  -moz-border-radius: 0.3125rem;
+  -ms-border-radius: 0.3125rem;
+  -o-border-radius: 0.3125rem;
+}
   @media (max-width: 1024px) {
     html{
       font-size: 80%;
+    }
+    .loading-cart{
+      min-width: auto; 
+      padding: 0.25rem; 
+      margin: 0;
     }
   }
   @media (max-width: 770px) {
     html{
       font-size: 75%;
+    }
+    .loader-cart {
+      min-width: auto; 
+      padding: 0.25rem; 
+      margin: 0;
     }
   }
   @media (max-width: 360px) {
