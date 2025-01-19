@@ -228,86 +228,20 @@ const handleRemoveFromCart =(product)=> {
       <div className={` ${productDisplay? "":"product-list"}`}>
         {loading?
         (  <>
-       <div className="loading-cart">
-        <div className="loader-img"></div>
+        { [...Array(8)].map(()=>(
+
+          <div className="loading-cart">
+        <div className="loader-img"><h4>Huzefah Store</h4></div>
         <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
+        <div className="loader-rating">★★★★★(000 reviews)</div>
         <div className="loader-price"></div>
         <div className="loader-btns">
           <button></button>
           <button></button>
         </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
-       <div className="loading-cart">
-        <div className="loader-img"></div>
-        <div className="loader-title"></div>
-        <div className="loader-rating">★★★★★</div>
-        <div className="loader-price"></div>
-        <div className="loader-btns">
-          <button></button>
-          <button></button>
-        </div>
-       </div>  
+       </div>
+        ))
+    } 
        </>)
          :
           ratingData.map((product) => {

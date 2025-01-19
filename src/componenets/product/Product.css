@@ -118,7 +118,7 @@
 
 /* ProductPage.css */
 .product-page {
-  background-color: #d6d4d4;
+  background-color: #f7f7f7;
   padding: 1.25rem;
   font-family: Arial, sans-serif;
 }
@@ -139,7 +139,7 @@
   max-height: none;
   padding: 0.9375rem;
   min-width: 15rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.242);
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -178,7 +178,8 @@
   margin-top: 1rem;
   background: #fff;
   justify-content: space-around;
- align-items: center;
+  align-items: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.242);
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
@@ -213,6 +214,7 @@
 .product-rating {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0.625rem 0;
 }
 

@@ -40,25 +40,24 @@ const UserCard = () => {
   
    const handleScrollLeft =()=> {
     reviewsRef.current.scrollBy({
-      left: window.innerWidth <= 1000? window.innerWidth: window.innerWidth ,
+      left:  reviewsRef.current.scrollWidth / 10 ,
       behavior: 'smooth',
     })
     // console.log(reviewsRef.current.scrollWidth);
   }
   const handleScrollRight =()=> {
     reviewsRef.current.scrollBy({
-      left:  window.innerWidth <= 1000? -window.innerWidth: -1192,
+      left:  -reviewsRef.current.clientWidth,
       behavior: 'smooth',
     })
     // console.log(reviewsRef.current.clientWidth);
   }
   
-  
+ 
+
   useEffect(()=>{
-    
-    
    let intervalId = setInterval(() => {
-    const remainingScroll = reviewsRef.current.clientWidth + reviewsRef.current.scrollLeft
+    const remainingScroll = reviewsRef.current.clientWidth + reviewsRef.current.scrollLeft + 32
     if (remainingScroll.toFixed(0) >= reviewsRef.current.scrollWidth) {
       reviewsRef.current.scrollTo({
         left: 0,
@@ -91,9 +90,12 @@ const UserCard = () => {
     <ul className="reviews" id="reviews" ref={reviewsRef}>
 
       {loading? (
-        <div className="loading-container">
-       <div className="loader"></div>
-       <p className="loading-text">Loading, please wait...</p>
+       <div className="loader-user-card">
+        <div className="loader-name"></div>
+        <div className="loader-user-name"></div>
+        <div className="loader-user-name"></div>
+        <div className="loader-user-email"></div>
+        <div className="loader-user-msg"></div>
        </div>
       ): users.map((user) => (
         <li className="user-card" key={user.id}>

@@ -5,6 +5,7 @@
   overflow-y: hidden;
   padding: 1.5rem 0;
   margin: 0;
+  scroll-snap-type: X mandatory;
   list-style: none;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -17,6 +18,8 @@
   width: 20rem;
   background-color: #1e2a47;
   color: #e5e5e5;
+  min-width: auto;
+  scroll-snap-align: center;
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin: 0 2.8rem;
@@ -107,8 +110,16 @@
 
 @media (max-width: 1000px) {
   .user-card {
-   flex: 0 0 90%;
-   margin: 0 2.7%;
+   flex: 0 0 85%;
+   margin: 0;
+  margin: 0
+   2.5rem;
+  }
+}
+@media (max-width: 770px) {
+  .user-card{
+    flex: 0 0 75%;
+
   }
 }
 
