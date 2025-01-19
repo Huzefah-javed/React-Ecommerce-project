@@ -255,7 +255,7 @@ const handleRemoveFromCart =(product)=> {
             <div key={product.id} className={`${productDisplay? "product-details-Flex":"product-card"}`}>
               {/* Product Image */}
               <div className={`${productDisplay? "product-img-List":"product-image"}`}>
-                <img src={image} alt={title} />
+                <img src={image} alt={title} loading="lazy" />
               </div>
 
               {/* Product Details */}

@@ -166,15 +166,31 @@ body{
   -ms-border-radius: 0.75rem;
   -o-border-radius: 0.75rem;
 }
-.loader-user-name{
+.loader-user-name, .loader-user-email{
   width: 7rem;
   height: 1.5rem;
   background-color: #76767614;
-  border-radius: 0.75rem;
+  margin-bottom: 0.8rem;
+  border-radius:0.75rem;
+  -webkit-border-radius:0.75rem;
+  -moz-border-radius:0.75rem;
+  -ms-border-radius:0.75rem;
+  -o-border-radius:0.75rem;
   -webkit-border-radius: 0.75rem;
-  -moz-border-radius: 0.75rem;
-  -ms-border-radius: 0.75rem;
-  -o-border-radius: 0.75rem;
+}
+.loader-user-msg{
+  margin-top: 1rem;
+  width: 90%;
+  height: 7rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  border-left: 0.25rem solid #69696a;
+  background-color: #76767614;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  border-top-right-radius:0.75rem;
+  border-bottom-right-radius:0.75rem;
+  
 }
 
   @media (max-width: 1024px) {
@@ -186,6 +202,16 @@ body{
       padding: 0.25rem; 
       margin: 0;
     }
+    .loader-user-card {
+      flex: 0 0 85%;
+      margin: 0;
+     margin: 0
+      2.5rem;
+     }
+     .loader-user-msg{
+      height: 2.5rem;
+      width: 95%;
+     }
   }
   @media (max-width: 770px) {
     html{
@@ -196,6 +222,10 @@ body{
       padding: 0.25rem; 
       margin: 0;
     }
+     .loader-user-card{
+    flex: 0 0 75%;
+
+  }
   }
   @media (max-width: 360px) {
     html{

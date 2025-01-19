@@ -63,7 +63,7 @@ const App = () => {
       element:(
       <>
       <AppRouter/>
-      <MainComponent />,
+      <MainComponent />
       </> ),
       children: [
         {

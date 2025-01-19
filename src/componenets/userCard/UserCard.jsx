@@ -89,15 +89,17 @@ const UserCard = () => {
     <>
     <ul className="reviews" id="reviews" ref={reviewsRef}>
 
-      {loading? (
-       <div className="loader-user-card">
-        <div className="loader-name"></div>
-        <div className="loader-user-name"></div>
-        <div className="loader-user-name"></div>
-        <div className="loader-user-email"></div>
-        <div className="loader-user-msg"></div>
-       </div>
-      ): users.map((user) => (
+      {loading?  (  <>
+        {[...Array(7)].map(()=> (
+          <div className="loader-user-card">
+          <div className="loader-name"></div>
+          <div className="loader-user-name"></div>
+          <div className="loader-user-email"></div>
+          <div className="loader-user-msg"></div>
+          </div>
+        ))}
+        </>)
+      : users.map((user) => (
         <li className="user-card" key={user.id}>
           <h2 className="user-card__name">
             {user.name.firstname} {user.name.lastname}
