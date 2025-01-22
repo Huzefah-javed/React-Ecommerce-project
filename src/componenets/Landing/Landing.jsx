@@ -1,23 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Landing.css";
 import UserCard from "../userCard/UserCard";
-
+import { NavLink } from "react-router-dom";
 const Landing = () => {
 
-
-
+  const landingPhotosContainer = useRef(null)
+  
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      console.log(landingPhotosContainer.current.scrollWidth , landingPhotosContainer.current.scrollLeft + landingPhotosContainer.current.clientWidth)
+      
+        if (landingPhotosContainer.current.scrollWidth !== landingPhotosContainer.current.scrollLeft + landingPhotosContainer.current.clientWidth) {
+          
+       
+            landingPhotosContainer.current.scrollBy({
+              left: landingPhotosContainer.current.clientWidth,
+              behavior: "smooth",
+            }) 
+          }else{
+            landingPhotosContainer.current.scrollTo({
+              left: 0,
+              behavior: "smooth",
+          })        
+        }
+      
+      
+      }, 7000) 
+      
+      return ()=> clearInterval(interval)
+    },[landingPhotosContainer])
 
 
   return (
     <>
     <div className="landing-page">
       {/* Hero Section */}
-      <div className="hero-section">
-        <div className="hero-content">
-          <h1>Your Ultimate Shopping Destination</h1>
-          <p>Find everything you love, in one place.</p>
-          <button>Shop Now</button>
+        <div className="hero-content" ref={landingPhotosContainer}>
+          <div className="img1 img">
+          <div className="content">
+        <h1>Your Ultimate Shopping Destination</h1>
+       <p>Find everything you love, in one place.</p>
+        <NavLink to="/products"><button>Shop Now</button></NavLink>
         </div>
+          </div>
+          <div className="img2 img">
+          <div className="content">
+            <h1>New Arrivals Are Here</h1>
+            <p>Check out the latest trends and styles.</p>
+            <NavLink to="/products">
+              <button>See What's New</button>
+            </NavLink>
+          </div>
+          </div>
+          <div className="img3 img">
+          <div className="content">
+            <h1>Discover Timeless Classics</h1>
+            <p>Explore products that never go out of style.</p>
+            <NavLink to="/products">
+              <button>Shop Classics</button>
+            </NavLink>
+          </div>
+
+          </div>
       </div>
 
       {/* Featured Section */}
@@ -44,7 +88,7 @@ const Landing = () => {
     <p>
       Explore a wide range of premium products at unbeatable prices. From electronics to clothing, we've got you covered.
     </p>
-    <button className="hero-btn">Start Shopping</button>
+    <NavLink to="/products"><button className="hero-btn">Start Shopping</button></NavLink>
   </div>
   <div className="secondary-image">
     <img
@@ -54,7 +98,7 @@ const Landing = () => {
   </div>
 </div>
   <div className="review-container">
-      <h1>Customers reviews </h1>
+      <h1>Customers' reviews for our store</h1>
       <UserCard />  
    </div>
     </div>

@@ -1,4 +1,7 @@
 /* CSS for the Product Detail Page */
+.single-product-page{
+  padding: 1rem;
+}
 .product-detail {
   display: flex;
   flex-wrap: wrap;

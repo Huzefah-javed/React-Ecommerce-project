@@ -50,7 +50,7 @@ const AboutUs = ({users}) => {
     </div>
     <hr />
     <div className="review-container">
-      <h1>Customers reviews </h1>
+      <h1>Customers' reviews for our store</h1>
       <UserCard users={users}/>  
    </div>
     </>

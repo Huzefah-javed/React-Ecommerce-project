@@ -33,7 +33,7 @@ const handleRemoveFromCart =(product)=> {
 }
 
     
-    return (<>
+    return (<div className="single-product-page">
          <div className="product-detail">
       <div className="product-image">
         <img src={singleProduct.image} alt={singleProduct.title} />
@@ -60,7 +60,7 @@ const handleRemoveFromCart =(product)=> {
                 )}
         </div>
       </div>
-    </div>
+          </div>
 
       
           <h1 className="related-product-heading">Related Products</h1>
@@ -127,7 +127,7 @@ const handleRemoveFromCart =(product)=> {
                 })}
               </div>
 
-    </>)
+    </div>)
 }
 
 export default SingleProduct;

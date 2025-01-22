@@ -3,9 +3,16 @@ body{
 }
 
 ::-webkit-scrollbar{
-    display: none;
+  display: none;
 }
-
+.error-main{
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 /* Fullscreen Loading Container */
 .loading-container {
     display: flex;
@@ -26,7 +33,7 @@ body{
     border: 8px solid rgba(255, 255, 255, 0.2); /* Light transparent border */
     border-top: 8px solid #ffffff; /* White top border for animation */
     border-radius: 50%;
-    animation: spin 1s linear infinite; /* Smooth spinning animation */
+    animation: spin 5s linear infinite; /* Smooth spinning animation */
     margin-bottom: 20px;
   }
   
@@ -37,18 +44,9 @@ body{
     text-align: center;
   }
   
-  /* Keyframes for spinning animation */
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  
 
-
-.loading-cart{
+  .loading-cart{
   background-color: #f4f4f4;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -73,6 +71,7 @@ body{
   width: 100%;
   display: flex;
   justify-content: center;
+  animation: loader-BG-animation 5s infinite;
   align-items: center;
   color: rgb(177, 176, 176);
   background-color: rgb(211, 211, 211);
@@ -86,11 +85,13 @@ body{
   width: 100%;
   height: 2rem;
   background-color: rgb(211, 211, 211);
+  animation: loader-BG-animation 5s infinite;
   border-radius: 2rem;
   -webkit-border-radius: 2rem;
   -moz-border-radius: 2rem;
   -ms-border-radius: 2rem;
   -o-border-radius: 2rem;
+  -webkit-animation: loader-BG-animation 5s infinite;
 }
 .loader-rating{
   color:rgb(211, 211, 211);
@@ -98,12 +99,14 @@ body{
 .loader-price{
   width: 6rem;
   height: 2rem;
+  animation: loader-BG-animation 5s infinite;
   background-color: rgb(211, 211, 211);
   border-radius: 2rem;
   -webkit-border-radius: 2rem;
   -moz-border-radius: 2rem;
   -ms-border-radius: 2rem;
   -o-border-radius: 2rem;
+  -webkit-animation: loader-BG-animation 5s infinite;
 }
 .loader-btns{
   display: flex;
@@ -117,17 +120,25 @@ body{
   padding: 1rem 1.75rem;
   border: none;
   font-size: 1rem;
+  animation: loader-BG-animation 5s infinite;
   cursor: pointer;
   border-radius: 0.3125rem;
-  transition: background-color 0.3s;
-  -webkit-transition: background-color 0.3s;
-  -moz-transition: background-color 0.3s;
-  -ms-transition: background-color 0.3s;
-  -o-transition: background-color 0.3s;
   -webkit-border-radius: 0.3125rem;
   -moz-border-radius: 0.3125rem;
   -ms-border-radius: 0.3125rem;
   -o-border-radius: 0.3125rem;
+  -webkit-animation: loader-BG-animation 5s infinite;
+}
+@keyframes loader-BG-animation {
+ 100%, 0%{
+  background-color: rgb(211, 211, 211);
+  color: #e4e4e4;
+ } 
+ 50%{
+  background-color: #e4e4e4;
+  color: rgb(211, 211, 211)
+ }
+ 
 }
 
 
@@ -192,7 +203,6 @@ body{
   border-bottom-right-radius:0.75rem;
   
 }
-
   @media (max-width: 1024px) {
     html{
       font-size: 80%;

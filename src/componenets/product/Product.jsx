@@ -19,14 +19,11 @@ function Product() {
         const {addToCartData, setAddToCartData, products, setProducts, productViewLoading} = useContext(CartContext)
         const [toggle, setToggle] = useState(false); 
         const [productDisplay, setProductDisplay] = useState(false); 
-        
-        console.log(addToCartData);
-        
+      
   
 
   const filterRef = useRef(null)
   const filterBtn = useRef(null)
-  console.log("filterRef", filterRef);
   
 
 
@@ -123,7 +120,6 @@ const handleRemoveFromCart =(product)=> {
       
    //  })    it help in sorting the products by price 
     
-       if (error) return <p>Error: {error}</p>;
 
 
    return (
@@ -221,7 +217,7 @@ const handleRemoveFromCart =(product)=> {
        
     
    
-    {ratingData.length===0 && !loading? (<div className="noItem"><h1>No item found</h1></div>): ""}
+    {ratingData.length===0 && !loading && !error? (<div className="noItem"><h1>No item found</h1></div>): ""}
    
 
 
@@ -244,7 +240,7 @@ const handleRemoveFromCart =(product)=> {
     } 
        </>)
          :
-          ratingData.map((product) => {
+          !error? ratingData.map((product) => {
           const { title, description, category, image, price, rating } = product;
 
           // Ensure rating is available and has a value
@@ -255,7 +251,7 @@ const handleRemoveFromCart =(product)=> {
             <div key={product.id} className={`${productDisplay? "product-details-Flex":"product-card"}`}>
               {/* Product Image */}
               <div className={`${productDisplay? "product-img-List":"product-image"}`}>
-                <img src={image} alt={title} loading="lazy" />
+                <img src={image} alt={title} loading="" />
               </div>
 
               {/* Product Details */}
@@ -296,7 +292,11 @@ const handleRemoveFromCart =(product)=> {
               </div>
             </div>
           );
-        })}
+        }): (<div className="error-main">
+             <h1>Error: {error}</h1>
+             <h1>or Internet problem</h1>
+             
+             </div>)} 
       </div>
     </div>
   );

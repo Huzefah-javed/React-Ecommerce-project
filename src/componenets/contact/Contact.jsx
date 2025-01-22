@@ -1,18 +1,44 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import "./Contact.css"
 
 const Contact =()=> {
  
-  
+const [formData, setFormData] = useState({
+  name : "",
+  email: "",
+  message : ""
+})
+const [formSubmit, setFormSubmit] = useState(false);
+
+const handleFormData =(e)=> {
+  setFormSubmit(false)
+  const value = e.target.value
+  const name = e.target.name 
+    setFormData((prev)=>({...prev, [name]: value}))
+    
+}
+
+
+const handleFormSubmit =(e)=> {
+  e.preventDefault()
+  console.log(formData)
+  setFormData({
+    name : "",
+    email: "",
+    message : ""
+  })
+  setFormSubmit(true)
+}
+
     return (
         <div className="contact-page">
         {/* Full-width header image */}
         <div className="contact-header">
-          <img
-            src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Contact Us"
-            className="contact-header-image"
-          />
+        <iframe src="https://www.google.com/maps?q=30.1423,71.3692&hl=en&z=15&output=embed" 
+                className="contact-header-map"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       
         {/* Content Section */}
@@ -27,51 +53,46 @@ const Contact =()=> {
             <h2>Our Address</h2>
             <p>Muzaffarabad, Multan, Pakistan</p>
             <p>Email: huzefahjaved@gmail.com</p>
-            <p>phone: +923008035012</p>
-            <div className="social-icons">
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <p>phone: +923297207977</p>
+         <div className="social-icons">
+      <a href="https://web.facebook.com/Huzefah.javed.775823" target="_blank" rel="noopener noreferrer" className="social-icon">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
       </a>
-      <a href="https://wa.me" target="_blank" rel="noopener noreferrer" className="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp" />
+      <a href="https://github.com/Huzefah-javed" target="_blank" rel="noopener noreferrer" className="social-icon">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" />
       </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+
+      <a href="https://www.instagram.com/i_m_huzefah_javed?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="social-icon">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
       </a>
     </div>
           </div>
-          <div className="map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d12509.517484055723!2d71.37041675402324!3d30.145244785346254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1sen!2s!4v1736441116220!5m2!1sen!2s" 
-           allowfullscreen="" loading="lazy" 
-           width="200px"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
       
         {/* Contact Form */}
         <div className="contact-section">
           <div className="contact-form">
-            <form>
+            <form onSubmit={(e)=>handleFormSubmit(e)}>
               <div className="form-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" placeholder="Your Name" required />
+                <input type="text" name="name" id="name" placeholder="Your Name" required  value={formData.name} onChange={(e)=>handleFormData(e)}/>
               </div>
       
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" placeholder="Your Email" required />
+                <input type="email" name="email" id="email" placeholder="Your Email" required value={formData.email} onChange={(e)=>handleFormData(e)}/>
               </div>
       
               <div className="form-group">
                 <label htmlFor="message">Your Message</label>
-                <textarea id="message" placeholder="Write your message here..." required></textarea>
+                <textarea id="message" name="message" placeholder="Write your message here..." required value={formData.message} onChange={(e)=>handleFormData(e)}></textarea>
               </div>
-      
+              {formSubmit? (<h5>Message Sent successfully</h5>): ""}      
               <button type="submit" className="submit-btn">Send Message</button>
             </form>
           </div>
         </div>
       </div>
+                </div>
       
     )
 }

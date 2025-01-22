@@ -29,25 +29,6 @@ const AppRouter = () => {
 const App = () => {
 
   
-  
-  const [loading, setLoading] = useState()
-
-  useEffect(()=>{
-    setLoading(true)
-  },[])
-
-
-  if (loading) {
-    console.log("hello its loading");
-    
-    return (<>
-       <div className="loading-container">
-            <div className="loader"></div>
-           <p className="loading-text">Loading, please wait...</p>
-       </div>    
-    </>)
-  }
-  
   const [addToCartData, setAddToCartData] = useState([]);
   const [products, setProducts] = useState([]);
   const contextValue = {
@@ -98,10 +79,6 @@ const App = () => {
       ]
     }
   ]);
-
-  useEffect(()=>{
-    setLoading(false)
-  },[])
 
   return (
     <CartContext.Provider value={contextValue}>

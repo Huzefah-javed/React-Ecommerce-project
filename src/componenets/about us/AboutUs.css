@@ -17,7 +17,8 @@
   color: #1e90ff;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 2rem;
 }
 .about-us-header h1 img {
   width: 15rem;
@@ -55,7 +56,6 @@
 }
 .about-logo{
   width: 20rem;
-  mix-blend-mode: saturation;
   background: #1e90ff;
 }
 hr{

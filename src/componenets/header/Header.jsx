@@ -11,7 +11,6 @@ const Header = () => {
 
   const menuRef = useRef(null)
   const menuBar = useRef(null)
-     console.log("menuRef value",menuRef);
      
       
     useEffect(()=>{
@@ -38,10 +37,10 @@ const Header = () => {
 
     <nav className={`menu ${toggle? "showMenu": "hideMenu"}`}  ref={menuRef}>
         {window.innerWidth < 780 ?
-    (<div className="cart-container"   onClick={handleToggle}>
-      <NavLink to="/cart"  className="cart-icon">🛒</NavLink>
+    (<NavLink to="/cart"  className="menu-item"><div className="cart-container" onClick={handleToggle}>
+      🛒
       <span className="cart-count">{addToCartData.length}</span> {/* Example cart count */}
-  </div>) : ""}
+  </div></NavLink>) : ""}
         <NavLink to="/" onClick={handleToggle} className="menu-item">Home</NavLink>
         <NavLink to="/products" onClick={handleToggle}   className="menu-item">Products</NavLink>
         <NavLink to="/blogs" onClick={handleToggle}   className="menu-item">Our Blogs</NavLink>

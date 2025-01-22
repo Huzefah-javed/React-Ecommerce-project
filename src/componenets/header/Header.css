@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0f1b30;
+  background-color: #00002c;
   color: #fff;
   padding: 0.9375rem 1.875rem;
   box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 99;
 }
 
 .logo {
@@ -67,8 +67,8 @@
 }
 
 .menu-item:hover {
-  background-color: #00002c;
-  color: #fff;
+  background-color: #fff;
+  color: #00002c;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
@@ -166,6 +166,10 @@
 }
 .menuHideAnimation3{
   transform: rotate(0);
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
 }
 .menuDisplayAnimation2{
   margin: 0;
@@ -189,10 +193,10 @@
     height: 90vh;
     padding: 0 1rem;
     overflow: scroll;
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
 }
   .showMenu{
     left: 0rem;
