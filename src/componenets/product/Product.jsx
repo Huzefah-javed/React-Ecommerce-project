@@ -124,7 +124,11 @@ const handleRemoveFromCart =(product)=> {
 
    return (
      <div className="product-page">
-
+         
+         <div className="cart-on-page">
+                  <NavLink to="/cart" className="cart-icon">🛒</NavLink>
+                  <span className="cart-count">{addToCartData.length}</span> {/* Example cart count */}
+              </div>
 
       <div className="product-heading">
         <h1>Explore Our Latest Products</h1>
@@ -239,7 +243,7 @@ const handleRemoveFromCart =(product)=> {
         ))
     } 
        </>)
-         :
+         : 
           !error? ratingData.map((product) => {
           const { title, description, category, image, price, rating } = product;
 
@@ -247,7 +251,7 @@ const handleRemoveFromCart =(product)=> {
           const ratingRate = rating ? rating.rate : 0; // Default to 0 if rating is undefined
           const ratingCount = rating ? rating.count : 0; // Default to 0 if count is undefined
 
-          return (
+          return ( <>
             <div key={product.id} className={`${productDisplay? "product-details-Flex":"product-card"}`}>
               {/* Product Image */}
               <div className={`${productDisplay? "product-img-List":"product-image"}`}>
@@ -291,7 +295,7 @@ const handleRemoveFromCart =(product)=> {
                 </div>
               </div>
             </div>
-          );
+          </>);
         }): (<div className="error-main">
              <h1>Error: {error}</h1>
              <h1>or Internet problem</h1>

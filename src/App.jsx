@@ -10,6 +10,7 @@ import { MainComponent } from './maincomponent/MainComonent.jsx';
 import singleProductApi from './api/singleProductApi.jsx';
 import SingleProduct from './componenets/singleProduct/SingleProduct.jsx';
 import { Cart } from './componenets/Cart/Cart.jsx';
+import Error from './componenets/Error/Error.jsx';
 
 export const CartContext = createContext();
 
@@ -46,6 +47,7 @@ const App = () => {
       <AppRouter/>
       <MainComponent />
       </> ),
+      errorElement: <Error/>,
       children: [
         {
           path: "/",

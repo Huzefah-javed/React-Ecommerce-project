@@ -40,25 +40,25 @@ const Landing = () => {
           <div className="content">
         <h1>Your Ultimate Shopping Destination</h1>
        <p>Find everything you love, in one place.</p>
-        <NavLink to="/products"><button>Shop Now</button></NavLink>
+       <button><NavLink to="/products">Shop Now</NavLink></button>
         </div>
           </div>
           <div className="img2 img">
           <div className="content">
             <h1>New Arrivals Are Here</h1>
             <p>Check out the latest trends and styles.</p>
-            <NavLink to="/products">
-              <button>See What's New</button>
-            </NavLink>
+            <button> <NavLink to="/products">
+              See What's New
+            </NavLink></button>
           </div>
           </div>
           <div className="img3 img">
           <div className="content">
             <h1>Discover Timeless Classics</h1>
             <p>Explore products that never go out of style.</p>
-            <NavLink to="/products">
-              <button>Shop Classics</button>
-            </NavLink>
+            <button><NavLink to="/products">
+              Shop Classics
+            </NavLink></button>
           </div>
 
           </div>

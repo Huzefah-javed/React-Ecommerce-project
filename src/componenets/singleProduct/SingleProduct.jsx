@@ -15,14 +15,22 @@ const {addToCartData,setAddToCartData, products} = useContext(CartContext)
 const singleProduct = useLoaderData();
 
 
-console.log(singleProduct);
-
 const handleAddToCart =(product)=>{
     product["quantity"] = 1
   setAddToCartData((prev)=>{
     return [...prev, product]
 })
 }
+
+const handleBuyNow =(singleProduct)=>{
+  const productAlreadyInCart = addToCartData.some((singleData)=> 
+      singleData.id === singleProduct.id
+  )
+      if(!productAlreadyInCart){
+        setAddToCartData((prev)=>[...prev, singleProduct]) 
+      }
+  }
+
 
 const handleRemoveFromCart =(product)=> {
   setAddToCartData((prev)=>{
@@ -34,6 +42,10 @@ const handleRemoveFromCart =(product)=> {
 
     
     return (<div className="single-product-page">
+          <div className="cart-on-page">
+               <NavLink to="/cart" className="cart-icon">🛒</NavLink>
+               <span className="cart-count">{addToCartData.length}</span> {/* Example cart count */}
+             </div>
          <div className="product-detail">
       <div className="product-image">
         <img src={singleProduct.image} alt={singleProduct.title} />
@@ -48,7 +60,7 @@ const handleRemoveFromCart =(product)=> {
           <span>{`(${singleProduct.rating.count} reviews)`}</span>
         </div>
         <div className="actions">
-          <button className="btn buy-now">Buy Now</button>
+          <button className="btn buy-now" onClick={()=>handleBuyNow(singleProduct)}><NavLink to="/cart">Buy Now</NavLink></button>
           {addToCartData.some((curItem) => curItem.id === singleProduct.id) ? (
                   <button className="btn add-to-cart" onClick={() => handleRemoveFromCart(singleProduct)}>
                     Remove from Cart
