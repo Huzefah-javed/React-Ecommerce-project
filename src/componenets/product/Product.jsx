@@ -1,8 +1,14 @@
 // ProductPage.js
 import React, { useContext, useEffect, useRef, useState } from "react";
-import "./Product.css"; 
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { BsGrid3X3GapFill } from "react-icons/bs";
+import { FaFilter } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
+import "./Product.css";
 import { NavLink } from "react-router-dom"
 import { CartContext } from "../../App";
+import { useQuery } from "@tanstack/react-query";
+import { getAllProducts } from "../../api/dataApi";
 
 
 
@@ -10,21 +16,23 @@ import { CartContext } from "../../App";
 
 function Product() {
 
-  const [price, setPrice] = useState(1000); 
+        const [price, setPrice] = useState(1000);
         const [searchedVal, setSearchedVal] = useState("");
         const [categorySearched, setCategorySearched] = useState("")
-        const [ratingSearched, setRatingSearched] = useState("") 
-        const [loading, setLoading] = useState(true); 
-        const [error, setError] = useState(null); 
-        const {addToCartData, setAddToCartData, products, setProducts, productViewLoading} = useContext(CartContext)
-        const [toggle, setToggle] = useState(false); 
-        const [productDisplay, setProductDisplay] = useState(false); 
-      
-  
+        const [ratingSearched, setRatingSearched] = useState("")
+        const [toggle, setToggle] = useState(false);
+        const [productDisplay, setProductDisplay] = useState(false);
+
+        const {addToCartData, setAddToCartData,  productViewLoading} = useContext(CartContext)
+
+        const {data, isLoading, isError, error} =  useQuery({
+            queryKey : ['products'],
+            queryFn : getAllProducts
+         })
 
   const filterRef = useRef(null)
   const filterBtn = useRef(null)
-  
+
 
 
   useEffect(()=>{
@@ -35,7 +43,7 @@ function Product() {
             }
          window.addEventListener("mousedown", handleFilterHideOnClickAnywhere)
       return ()=>  window.removeEventListener("mousedown", handleFilterHideOnClickAnywhere)
-  },[filterRef])
+  },[])
 
 
   const handleFilterDisplay =()=> {
@@ -50,32 +58,6 @@ function Product() {
     setProductDisplay(true)
   }
 
-
-  const fetchProductsData = async () => {
-    setLoading(true);
-    try {
-      const responseProduct = await fetch("https://fakestoreapi.com/products");
-
-      if (!responseProduct.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const productData = await responseProduct.json();
-           setProducts(productData)  
-    } catch (err) {
-     return setError(err.message);
-    } finally {
-     return setLoading(false); 
-    }
-  };
-
-
-
-
-
-
-useEffect(()=>{
-  fetchProductsData()
-},[])
 
 
 
@@ -96,35 +78,35 @@ const handleRemoveFromCart =(product)=> {
 }
 
 
-         let data = searchedVal ? products.filter((curElem)=>{
-            return curElem.title.toUpperCase().includes(searchedVal.toUpperCase())   
-      }): products;
-    
+         let productData = searchedVal ? data?.filter((curElem)=>{
+            return curElem.title.toUpperCase().includes(searchedVal.toUpperCase())
+      }): data || [];
 
-     const filteredData = categorySearched? data.filter((curElem)=>{
+
+     const filteredData = categorySearched? productData.filter((curElem)=>{
         return curElem.category === categorySearched
-  }): data;
+  }): productData;
 
-  
+
   const priceRange = price? filteredData.filter((curElem)=>{
     return curElem.price <= price
    }): filteredData;
 
 
    const ratingData = ratingSearched? priceRange.filter((curElem)=>{
-    return curElem.rating.rate.toFixed(0) <= ratingSearched
+    return curElem.rating.rate.toFixed(0) >= ratingSearched
    }): priceRange
-   
+
   //  const ratingData = abcd.sort((a, b)=>{
   //    return b.price - a.price // a.price - b.price
-      
-   //  })    it help in sorting the products by price 
-    
+
+   //  })    it help in sorting the products by price
+
 
 
    return (
      <div className="product-page">
-         
+
          <div className="cart-on-page">
                   <NavLink to="/cart" className="cart-icon">🛒</NavLink>
                   <span className="cart-count">{addToCartData.length}</span> {/* Example cart count */}
@@ -138,6 +120,7 @@ const handleRemoveFromCart =(product)=> {
         {
           window.innerWidth <= 1000? (<div className="filter-item">
             <label htmlFor="search">Search Products:</label>
+            <div className="filterMainSmallScreen">
             <input
               type="text"
               id="search"
@@ -145,17 +128,18 @@ const handleRemoveFromCart =(product)=> {
               className="filter-input"
               value={searchedVal}
               onChange={(e)=> setSearchedVal(e.target.value)}
-            />
+              />
+              <div className="filter-btns">
+            <button onClick={handleFilterDisplay} className="filter-smallScreen" ref={filterBtn}><FaFilter /> {toggle? <IoIosArrowDown />: <IoIosArrowUp />}</button>
+
+              <button disabled={!productDisplay} onClick={()=>handleToggleProductGridDisplay()} className="displayGrid"><BsGrid3X3GapFill /></button>
+              <button disabled={productDisplay} onClick={()=>handleToggleProductListDisplay()} className="displayList"><FaList /></button>
+
+              </div>
+
+            </div>
           </div>) : ""
         }
-            <div className="filterMainSmallScreen">
-            <button onClick={handleFilterDisplay} className="filter-smallScreen" ref={filterBtn}>Filter {toggle? "↓": "↑"}</button>
-            
-              <button onClick={()=>handleToggleProductGridDisplay()} className="displayGrid">Grid Display</button>
-              <button onClick={()=>handleToggleProductListDisplay()} className="displayList">List display</button>
-              
-          
-            </div>
 
       <div className={`product-filters ${toggle? "showFilter": "hideFilter"}`} ref={filterRef}>
         {/* Search Bar */}
@@ -173,7 +157,7 @@ const handleRemoveFromCart =(product)=> {
        </div>
        ) : ""
       }
-      
+
         {/* Category Select */}
         <div className="filter-item">
           <label htmlFor="category">Category:</label>
@@ -187,10 +171,10 @@ const handleRemoveFromCart =(product)=> {
             <option value="women's clothing">Women's Clothing</option>
           </select>
         </div>
-      
+
         {/* Price Slider */}
         <div className="filter-item">
-          <label htmlFor="price">Minimum Price:</label>
+          <label htmlFor="price">Minimum Price: <strong>${price}</strong></label>
           <input
             type="range"
             id="price"
@@ -200,33 +184,32 @@ const handleRemoveFromCart =(product)=> {
             onChange={(e)=>setPrice(e.target.value)}
             className="filter-slider"
           />
-          <h3>{price}$</h3>
         </div>
-      
+
         {/* Rating Select */}
         <div className="filter-item">
           <label htmlFor="rating">Minimum Rating:</label>
           <select id="rating" className="filter-select" value={ratingSearched} onChange={(e)=>setRatingSearched(e.target.value)}>
             <option value="">Any Rating</option>
-            <option value="1">1 Star</option>
-            <option value="2">2 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="5">5 Stars</option>
+            <option value="1">1 and greater stars</option>
+            <option value="2">2 and greater stars</option>
+            <option value="3">3 and greater stars</option>
+            <option value="4">4 and greater stars</option>
+            <option value="5">5 stars</option>
           </select>
         </div>
       </div>
-      
-     
-       
-    
-   
-    {ratingData.length===0 && !loading && !error? (<div className="noItem"><h1>No item found</h1></div>): ""}
-   
+
+
+
+
+
+    {ratingData.length===0 && !isLoading && !isError? (<div className="noItem"><h1>No item found</h1></div>): ""}
+
 
 
       <div className={` ${productDisplay? "":"product-list"}`}>
-        {loading?
+        {isLoading?
         (  <>
         { [...Array(8)].map(()=>(
 
@@ -241,10 +224,10 @@ const handleRemoveFromCart =(product)=> {
         </div>
        </div>
         ))
-    } 
+    }
        </>)
-         : 
-          !error? ratingData.map((product) => {
+         :
+          !isError? ratingData.map((product) => {
           const { title, description, category, image, price, rating } = product;
 
           // Ensure rating is available and has a value
@@ -255,7 +238,7 @@ const handleRemoveFromCart =(product)=> {
             <div key={product.id} className={`${productDisplay? "product-details-Flex":"product-card"}`}>
               {/* Product Image */}
               <div className={`${productDisplay? "product-img-List":"product-image"}`}>
-                <img src={image} alt={title} loading="" />
+                <img src={image} alt={title} loading="lazy" />
               </div>
 
               {/* Product Details */}
@@ -264,7 +247,7 @@ const handleRemoveFromCart =(product)=> {
                 <div className="product-rating">
                   <span className="rating-stars">
                     {[...Array(5)].map((_, index) => (
-                        
+
                         <span
                         key={index}
                         className={index < ratingRate.toFixed(0) ? "star-filled" : "star"}
@@ -281,7 +264,7 @@ const handleRemoveFromCart =(product)=> {
                 </div>
 
                 <div className="product-actions">
-                  
+
                 {addToCartData.some((curItem) => curItem.id === product.id) ? (
                   <button className="remove-from-cart" onClick={() => handleRemoveFromCart(product)}>
                     Remove from Cart
@@ -299,8 +282,8 @@ const handleRemoveFromCart =(product)=> {
         }): (<div className="error-main">
              <h1>Error: {error}</h1>
              <h1>or Internet problem</h1>
-             
-             </div>)} 
+
+             </div>)}
       </div>
     </div>
   );

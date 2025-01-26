@@ -1,43 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import './UserCard.css';
+import { useQuery } from '@tanstack/react-query';
+import { getAllUsers } from '../../api/dataApi';
 
 const UserCard = () => {
 
-  const [users, setUsers] = useState([]); 
-    const [loading, setLoading] = useState(true); 
-    const [error, setError] = useState(null); 
 
-  const fetchUsersData = async () => {
-    setLoading(true);
-    try {
-      const responseUsers = await fetch("https://fakestoreapi.com/users");
-
-      if (!responseUsers.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const usersData = await responseUsers.json();
-           setUsers(usersData)  
-    } catch (err) {
-     return setError(err.message);
-    } finally {
-     return setLoading(false); 
-    }
-  };
-
-  
-  
-  
-
-  useEffect(()=>{
-  fetchUsersData()
-},[])
-
-
+ const {data , isLoading, isError, error} = useQuery({
+        queryKey: ['users'],
+        queryFn: getAllUsers
+ })
 
 
 
   const reviewsRef = useRef(null)
-  
+
    const handleScrollLeft =()=> {
     reviewsRef.current.scrollBy({
       left:  reviewsRef.current.scrollWidth / 10 ,
@@ -52,8 +30,8 @@ const UserCard = () => {
     })
     // console.log(reviewsRef.current.clientWidth);
   }
-  
- 
+
+
 
   useEffect(()=>{
    let intervalId = setInterval(() => {
@@ -64,16 +42,16 @@ const UserCard = () => {
       })
     }else{
       handleScrollLeft()
-    }     
-    }, 3000); 
-  
+    }
+    }, 3000);
+
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
     }
   },[])
-  
+
   // if (loading) {
   //   return(
   //  <div className="loading-container">
@@ -88,7 +66,7 @@ const UserCard = () => {
     <>
     <ul className="reviews" id="reviews" ref={reviewsRef}>
 
-      {loading?  (  <>
+      {isLoading?  (  <>
         {[...Array(7)].map(()=> (
           <div className="loader-user-card">
           <div className="loader-name"></div>
@@ -98,7 +76,7 @@ const UserCard = () => {
           </div>
         ))}
         </>)
-      :!error? users.map((user) => (
+      :!isError? data?.map((user) => (
         <li className="user-card" key={user.id}>
           <h2 className="user-card__name">
             {user.name.firstname} {user.name.lastname}
@@ -116,13 +94,13 @@ const UserCard = () => {
       )):(<div className="error-main">
         <p>Error: {error}</p>
         <p>or Internet problem</p>
-        
+
         </div>)}
     </ul>
     <div className="btns">
 
-    <button onClick={handleScrollRight}>←</button>
-    <button onClick={handleScrollLeft}>→</button>
+    <button onClick={handleScrollRight}><FaArrowLeftLong /></button>
+    <button onClick={handleScrollLeft}><FaArrowRightLong /></button>
     </div>
     </>
   );

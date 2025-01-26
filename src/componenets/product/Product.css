@@ -265,9 +265,21 @@
   }
   .product-filters {
     flex-direction: column;
-    gap: 0.9375rem;
+    /* gap: 3rem; */
     position: relative;
     top: 1rem;
+  }
+  #search{
+    flex: 3;
+    height: 100%;
+    padding: 1.5rem 0.5rem;
+  }
+  .filter-btns{
+    flex: 0.5;
+    display: flex;
+  }
+  .filter-item {
+    margin: 0.5rem 0;
   }
   .hideFilter {
     display: none;
@@ -277,11 +289,13 @@
   }
   .filterMainSmallScreen {
     display: flex;
+    /* justify-content: center; */
+    align-items: center;
     margin-top: 1rem;
     gap: 0.5rem;
   }
   .filterMainSmallScreen button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
     margin-top: 1rem;
     background: #003366; /* Deep blue */
     color: #fff;
@@ -289,13 +303,21 @@
     border-radius: 0.5rem;
   }
   .filter-smallScreen {
-    flex-grow: 2;
+    flex-grow: 0;
   }
   .displayGrid {
-    flex: 1;
+    margin: 0.5rem;
+  }
+  .displayGrid:disabled{
+    background-color: #a4a4a4;
+    color: #ffffffcc;
   }
   .displayList {
-    flex: 1;
+    margin: 0.5rem;
+  }
+  .displayList:disabled{
+    background-color: #a4a4a4;
+    color: #ffffffcc;
   }
 
   .filter-item {

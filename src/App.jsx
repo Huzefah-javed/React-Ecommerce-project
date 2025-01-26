@@ -1,5 +1,6 @@
 import  { createContext, useEffect, useState } from 'react'; // Import useState
 import Landing from './componenets/Landing/Landing';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import "./App.css";
 import Product from './componenets/product/Product.jsx';
 import Contact from './componenets/contact/Contact.jsx';
@@ -29,7 +30,7 @@ const AppRouter = () => {
 
 const App = () => {
 
-  
+
   const [addToCartData, setAddToCartData] = useState([]);
   const [products, setProducts] = useState([]);
   const contextValue = {
@@ -38,7 +39,7 @@ const App = () => {
     products,
     setProducts,
   };
-  
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -82,10 +83,14 @@ const App = () => {
     }
   ]);
 
+
+  const queryClient = new QueryClient();
   return (
-    <CartContext.Provider value={contextValue}>
-      <RouterProvider router={router} />
-    </CartContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <CartContext.Provider value={contextValue}>
+        <RouterProvider router={router} />
+      </CartContext.Provider>
+    </QueryClientProvider>
   );
 };
 

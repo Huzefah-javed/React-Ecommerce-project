@@ -23,11 +23,12 @@ const handleAddToCart =(product)=>{
 }
 
 const handleBuyNow =(singleProduct)=>{
-  const productAlreadyInCart = addToCartData.some((singleData)=> 
+  const productAlreadyInCart = addToCartData.some((singleData)=>
       singleData.id === singleProduct.id
   )
       if(!productAlreadyInCart){
-        setAddToCartData((prev)=>[...prev, singleProduct]) 
+        singleProduct["quantity"] = 1
+        setAddToCartData((prev)=>[...prev, singleProduct])
       }
   }
 
@@ -40,7 +41,7 @@ const handleRemoveFromCart =(product)=> {
   })
 }
 
-    
+
     return (<div className="single-product-page">
           <div className="cart-on-page">
                <NavLink to="/cart" className="cart-icon">🛒</NavLink>
@@ -74,37 +75,37 @@ const handleRemoveFromCart =(product)=> {
       </div>
           </div>
 
-      
+
           <h1 className="related-product-heading">Related Products</h1>
         {products.length===0? (<div className="noItem"><h1>No item found</h1></div>): ""}
         <div className="product-list">
                  {
                    products.map((product) => {
                     if (product.category === singleProduct.category && product.id !== singleProduct.id) {
-                      
+
                       const { title, description, category, image, price, rating } = product;
-                      
+
                   // Ensure rating is available and has a value
                   const ratingRate = rating ? rating.rate : 0; // Default to 0 if rating is undefined
                   const ratingCount = rating ? rating.count : 0; // Default to 0 if count is undefined
-                  
+
                   return (
                     <div key={product.id} className="product-card">
                       {/* Product Image */}
                       <div className="product-image">
                         <img src={image} alt={title} />
                       </div>
-        
+
                       {/* Product Details */}
                       <div className="product-details">
                         <h2 className="product-title">{title}</h2>
                         {/* <p className="product-category">Category: {category}</p> */}
                         {/* <p className="product-description">{description}</p> */}
-        
+
                         <div className="product-rating">
                           <span className="rating-stars">
                             {[...Array(5)].map((_, index) => (
-                                
+
                               <span
                               key={index}
                                 className={index < ratingRate.toFixed(0) ? "star-filled" : "star"}
@@ -115,11 +116,11 @@ const handleRemoveFromCart =(product)=> {
                           </span>
                           <span className="rating-count">({ratingCount} reviews)</span>
                         </div>
-        
+
                         <div className="product-price">
                           <span>${price}</span>
                         </div>
-        
+
                         <div className="product-actions">
                         {addToCartData.some((curItem) => curItem.id === product.id) ? (
                             <button className="remove-from-cart" onClick={() => handleRemoveFromCart(product)}>
@@ -134,7 +135,7 @@ const handleRemoveFromCart =(product)=> {
                         </div>
                       </div>
                     </div>
-                  ) 
+                  )
                   }
                 })}
               </div>
