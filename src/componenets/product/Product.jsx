@@ -27,7 +27,8 @@ function Product() {
 
         const {data, isLoading, isError, error} =  useQuery({
             queryKey : ['products'],
-            queryFn : getAllProducts
+            queryFn : getAllProducts,
+            staleTime: 300000
          })
 
   const filterRef = useRef(null)

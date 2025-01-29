@@ -1,38 +1,30 @@
-import React, { useState, useEffect } from "react";
+
 import "./BlogPage.css"
+import { useQuery } from "@tanstack/react-query";
+import { getAllBlogs } from "../../api/dataApi";
 
 function BlogPage() {
 
 
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch blog data from API
-  useEffect(() => {
-    fetch("https://newsapi.org/v2/everything?domains=wsj.com&apiKey=3d0723dec2fd4f39902115b219e4588e") // Replace with your actual API endpoint
-      .then((response) => response.json())
-      .then((data) => {
-        setBlogs(data.articles); // Assuming the data has an "articles" array
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching blog data:", error);
-        setLoading(false);
-      });
-  }, []);
+ const { data, isLoading, isError, error } = useQuery({
+      queryKey: ["blogs"],
+      queryFn: getAllBlogs,
+      staleTime: 300000
+ })
 
   return (
     <div className="blog-page">
       <h1 className="page-title">Latest News Blog Posts</h1>
       <div className="blog-container">
-        {loading && <p className="loading-message">Loading blogs...</p>}
-        {!loading &&
-          blogs.length === 0 && (
-            <p className="no-blogs-message">No blogs available at the moment.</p>
+        {isLoading && <p className="loading-message">Loading blogs...</p>}
+        {isError &&(
+           <div className="error-main">
+           <h1>Error: {error || "an Error occurs"}</h1>
+           <h1>or Internet problem</h1>
+
+           </div>
           )}
-        {!loading &&
-          blogs.length > 0 &&
-          blogs.map((blog, index) => (
+        {!isLoading && !isError && data?.length === 0 &&  data?.map((blog, index) => (
             <div key={index} className="blog-post">
               <img
                 src={blog.urlToImage || "/placeholder-image.jpg"}

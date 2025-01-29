@@ -5,28 +5,26 @@ import { NavLink } from "react-router-dom";
 const Landing = () => {
 
   const landingPhotosContainer = useRef(null)
-  
+
   useEffect(()=>{
     const interval = setInterval(()=>{
-      console.log(landingPhotosContainer.current.scrollWidth , landingPhotosContainer.current.scrollLeft + landingPhotosContainer.current.clientWidth)
-      
         if (landingPhotosContainer.current.scrollWidth !== landingPhotosContainer.current.scrollLeft + landingPhotosContainer.current.clientWidth) {
-          
-       
+
+
             landingPhotosContainer.current.scrollBy({
               left: landingPhotosContainer.current.clientWidth,
               behavior: "smooth",
-            }) 
+            })
           }else{
             landingPhotosContainer.current.scrollTo({
               left: 0,
               behavior: "smooth",
-          })        
+          })
         }
-      
-      
-      }, 7000) 
-      
+
+
+      }, 7000)
+
       return ()=> clearInterval(interval)
     },[landingPhotosContainer])
 
@@ -92,14 +90,14 @@ const Landing = () => {
   </div>
   <div className="secondary-image">
     <img
-      src="https://plus.unsplash.com/premium_photo-1661368873079-5ccd41284d1d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+      src="https://plus.unsplash.com/premium_photo-1661368873079-5ccd41284d1d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt="Shopping Deals"
       />
   </div>
 </div>
   <div className="review-container">
       <h1>Customers' reviews for our store</h1>
-      <UserCard />  
+      <UserCard />
    </div>
     </div>
       </>
